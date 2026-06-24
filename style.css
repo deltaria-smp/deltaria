@@ -343,7 +343,7 @@ footer p {
     font-size: 3.8rem;
     font-weight: 900;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #ffffff 40%, var(--accent-blue));
+    background: linear-gradient(135deg, var(--accent-java) 0%, var(--accent-blue) 50%, var(--accent-bedrock) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 15px;
