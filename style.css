@@ -1,20 +1,28 @@
-/* --- RESET & ROOT STYLE --- */
+/* ==========================================================================
+   1. RESET & CORE VARIABLES (TEMA EPIC CYBER-FANTASY MINECRAFT)
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 :root {
-    --bg-dark: #070913;
-    --bg-card: #11162d;
-    --bg-card-hover: #171e3d;
-    --accent-blue: #38bdf8;
-    --accent-java: #f43f5e;
-    --accent-bedrock: #10b981;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #1e293b;
+    --bg-dark: #060814;
+    --bg-surface: #0b1126;
+    --bg-card: #121b3a;
+    --bg-card-hover: #19254e;
+    
+    /* Aksentuasi Warna Neon */
+    --accent-blue: #00d2ff;
+    --accent-java: #ff2a5f;
+    --accent-bedrock: #00f59b;
+    
+    /* Warna Teks */
+    --text-main: #ffffff;
+    --text-muted: #8fa0dd;
+    --border-glow: rgba(0, 210, 255, 0.2);
 }
+
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-dark);
@@ -23,112 +31,132 @@ body {
     overflow-x: hidden;
 }
 
-/* --- NAVBAR --- */
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
 nav {
-    background-color: rgba(7, 9, 19, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(6, 8, 20, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid #142046;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
+    padding: 22px 10%;
 }
 .nav-logo {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
-    color: var(--accent-blue);
+    color: #ffffff;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6), 0 0 20px rgba(0, 210, 255, 0.2);
 }
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 35px;
     list-style: none;
 }
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: color 0.2s, text-shadow 0.2s;
 }
 .nav-links a:hover {
-    color: var(--text-main);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    color: var(--accent-blue);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.8);
 }
 
-/* --- HERO SECTION --- */
+/* ==========================================================================
+   3. HERO SECTION & BACKGROUND RADIANCE
+   ========================================================================== */
 .hero {
-    min-height: 75vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 120px 20px 60px 20px;
-    background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12) 0%, rgba(7, 9, 19, 1) 70%);
+    padding: 150px 20px 80px 20px;
+    position: relative;
+    background: 
+        radial-gradient(circle at 50% 20%, rgba(0, 210, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 20% 50%, rgba(ff, 2a, 5f, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 50%, rgba(0, 255, 9b, 0.05) 0%, transparent 40%);
 }
 .hero h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 900;
-    letter-spacing: -1.5px;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #ffffff 40%, var(--accent-blue));
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ffffff 30%, #a5ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
 }
 .hero p {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: var(--text-muted);
-    max-width: 700px;
-    margin-bottom: 40px;
-    font-weight: 400;
+    max-width: 750px;
+    margin-bottom: 50px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* --- LAYOUT HORIZONTAL IP BOX --- */
+/* ==========================================================================
+   4. INTERACTIVE WIDGETS (TOMBOL IP HORIZONTAL PREMIUM)
+   ========================================================================== */
 .ip-flex-row {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 30px;
     width: 100%;
-    max-width: 950px;
+    max-width: 1000px;
     padding: 0 20px;
 }
 
 .ip-widget {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 18px 24px;
-    border-radius: 16px;
+    background-color: var(--bg-surface);
+    border: 2px solid #1a2754;
+    padding: 22px 28px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     cursor: pointer;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s, background-color 0.25s;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
     flex: 1;
-    min-width: 340px;
+    min-width: 360px;
 }
 
+/* Efek Animasi Denyut Bayangan Saat Kursor Mendekat */
 .ip-widget:hover {
-    transform: translateY(-4px);
-    background-color: var(--bg-card-hover);
+    transform: translateY(-8px);
+    background-color: var(--bg-card);
 }
-
-.java-theme:hover { border-color: var(--accent-java); box-shadow: 0 12px 30px rgba(244, 63, 94, 0.15); }
-.bedrock-theme:hover { border-color: var(--accent-bedrock); box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15); }
+.java-theme:hover { 
+    border-color: var(--accent-java); 
+    box-shadow: 0 20px 40px rgba(255, 42, 95, 0.25); 
+}
+.bedrock-theme:hover { 
+    border-color: var(--accent-bedrock); 
+    box-shadow: 0 20px 40px rgba(0, 255, 155, 0.25); 
+}
 
 .server-icon {
-    font-size: 28px;
-    user-select: none;
+    font-size: 32px;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
 }
 
 .ip-box {
@@ -140,136 +168,179 @@ nav {
     font-size: 11px;
     text-transform: uppercase;
     color: var(--text-muted);
-    letter-spacing: 1px;
-    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-weight: 800;
 }
 
 .ip-address {
-    font-family: 'Consolas', 'Courier New', Courier, monospace;
-    font-size: 16px;
+    font-family: 'Consolas', monospace;
+    font-size: 17px;
     font-weight: 700;
     color: #ffffff;
-    margin-top: 4px;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
 }
 
 .port-label {
     font-family: 'Segoe UI', sans-serif;
     font-size: 12px;
-    color: #ffffff;
-    background: rgba(16, 185, 129, 0.2);
-    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: var(--accent-bedrock);
+    background: rgba(0, 255, 155, 0.12);
+    border: 1px solid rgba(0, 255, 155, 0.3);
     padding: 2px 8px;
     border-radius: 6px;
-    margin-left: 6px;
-    font-weight: 600;
+    margin-left: 8px;
+    font-weight: 700;
 }
 
 .btn-copy {
-    background-color: var(--accent-blue);
-    color: #070913;
+    background-color: #ffffff;
+    color: var(--bg-dark);
     border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
+    padding: 12px 20px;
+    border-radius: 12px;
     font-weight: 800;
     font-size: 12px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    min-width: 95px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background-color 0.2s, transform 0.1s, color 0.2s;
+    min-width: 100px;
 }
-.btn-copy:active {
-    transform: scale(0.95);
+.java-theme .btn-copy { background-color: var(--accent-java); color: #fff; }
+.bedrock-theme .btn-copy { background-color: var(--accent-bedrock); color: #060814; }
+
+.btn-copy:hover {
+    filter: brightness(1.2);
 }
 
-/* --- SEKSI ARTIKEL / GRID FITUR (CENTRALIZED) --- */
+/* ==========================================================================
+   5. FEATURE GRID SECTION (SEMBURNA DI TENGAH)
+   ========================================================================== */
 .container {
-    max-width: 1100px;
-    margin: 100px auto; /* Membuat posisi seksi ini center di tengah layar */
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 140px auto; /* Memberikan rongga vertikal yang luas dan seimbang */
+    padding: 0 40px;
 }
+
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    font-weight: 900;
     letter-spacing: -0.5px;
-    background: linear-gradient(to right, #fff, #94a3b8);
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ffffff, #a5b4fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    justify-content: center; /* Memastikan isi grid seimbang di tengah */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    justify-content: center;
 }
+
 .card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 35px 30px;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    text-align: left; /* Teks di dalam card tetap rapi rata kiri */
+    background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+    border: 2px solid #15224f;
+    border-radius: 24px;
+    padding: 45px 35px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
+
+/* Efek Ornamen Border Menyala Saat Kartu Disorot */
 .card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(56, 189, 248, 0.4);
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.08);
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 45px rgba(0, 210, 255, 0.15);
 }
+
+/* Efek Dekorasi Cahaya Belakang Kartu */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.card:hover::before {
+    opacity: 1;
+}
+
 .card .icon {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin-bottom: 25px;
     display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
 }
+
 .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
+
 .card p {
     color: var(--text-muted);
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* --- FOOTER --- */
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
 footer {
     text-align: center;
-    padding: 60px 20px;
-    background-color: #04050b;
-    border-top: 1px solid var(--border-color);
-    color: #64748b;
+    padding: 80px 20px;
+    background-color: #03040a;
+    border-top: 2px solid #111b3d;
+    color: #52648c;
     font-size: 14px;
 }
+footer p {
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-/* --- MEDIA QUERIES (RESPONSIVE MOBILES) --- */
-@media (max-width: 900px) {
-    .hero h1 { font-size: 3rem; }
+/* ==========================================================================
+   7. MEDIA QUERIES (FULL RESPONSIFITAS GADGET)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 3.5rem; }
     .ip-flex-row {
         flex-direction: column;
         align-items: center;
     }
     .ip-widget {
         width: 100%;
-        max-width: 500px;
+        max-width: 550px;
         min-width: auto;
     }
 }
 
 @media (max-width: 768px) {
-    nav { padding: 15px 5%; }
-    .nav-links { display: none; } /* Menyembunyikan menu link di HP */
-    .container { margin: 60px auto; }
-    .section-title { font-size: 2rem; }
+    nav { padding: 15px 6%; }
+    .nav-links { display: none; }
+    .container { margin: 80px auto; padding: 0 25px; }
+    .section-title { font-size: 2.2rem; margin-bottom: 40px; }
+    .card { padding: 35px 25px; }
 }
 
 @media (max-width: 480px) {
-    .hero h1 { font-size: 2.4rem; }
-    .ip-widget { padding: 15px; gap: 12px; }
-    .server-icon { font-size: 22px; }
-    .ip-address { font-size: 13px; }
+    .hero h1 { font-size: 2.6rem; }
+    .hero p { font-size: 1.1rem; }
+    .ip-widget { padding: 18px; gap: 15px; }
+    .server-icon { font-size: 26px; }
+    .ip-address { font-size: 14px; }
     .port-label {
         display: inline-block;
         margin-left: 0;
