@@ -1,6 +1,10 @@
 /* ==========================================================================
    1. RESET & CORE VARIABLES (TEMA EPIC CYBER-FANTASY MINECRAFT)
    ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
