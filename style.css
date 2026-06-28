@@ -121,27 +121,30 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    flex-wrap: nowrap;     /* <--- KUNCI 1: Dilarang keras turun ke bawah, wajib sejajar! */
+    gap: 30px; 
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;     /* <--- KUNCI 2: Diperlebar dari 1000px ke 1200px biar ruangnya lega */
     padding: 0 20px;
 }
 
 .ip-widget {
     background-color: var(--bg-surface);
     border: 2px solid #1a2754;
-    padding: 22px 28px;
-    border-radius: 20px;
+    padding: 22px 28px; 
+    border-radius: 16px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 20px;          
     cursor: pointer;
     position: relative;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
-    flex: 1;
-    min-width: 360px;
+    
+    /* KUNCI 3: Aturan pembesaran kotak baru */
+    flex: 1;               /* Membagi rata ruang kosong agar kedua kotak sama-sama melar */
+    width: 500px;          /* <--- Atur panjang target yang kamu mau di sini (misal 500px atau lebih) */
+    min-width: 350px;      /* Batas ciut paling kecil di layar laptop ringkas */
 }
 
 /* Efek Animasi Denyut Bayangan Saat Kursor Mendekat */
@@ -151,7 +154,7 @@ nav {
 }
 .java-theme:hover { 
     border-color: var(--accent-java); 
-    box-shadow: 0 20px 40px rgba(255, 42, 95, 0.25); 
+    box-shadow: 0 20px 60px rgba(255, 42, 95, 0.25); 
 }
 .bedrock-theme:hover { 
     border-color: var(--accent-bedrock); 
@@ -319,7 +322,8 @@ footer p {
    6. SEKSI ARSITUR HALAMAN KHUSUS SUPPORT (support.html)
    ========================================================================== */
 .support-page-bg {
-    background: radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.08) 0%, #060814 60%) !important;
+    /* Menggunakan warna dasar hitam pekat dengan sedikit bias cyan tipis di bagian atas */
+    background: radial-gradient(circle at 50% 75%, rgba(0, 210, 255, 0.04) 0%, #030408 50%) !important;
 }
 
 .active-link {
@@ -549,4 +553,12 @@ footer p {
         margin-left: 0;
         margin-top: 6px;
     }
+}
+
+.custom-icon-img {
+    width: 64px;          /* Menyesuaikan dengan ukuran font-size 32px sebelumnya */
+    height: 64px;         /* Memastikan rasio gambar kotak sempurna */
+    object-fit: contain;  /* Menjaga gambar tidak gepeng atau terdistorsi */
+    vertical-align: middle;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Mempertahankan efek glow */
 }
