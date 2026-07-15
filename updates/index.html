@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deltaria SMP - Server Updates</title>
+    <!-- CSS Utama dari Web Deltaria -->
+    <link rel="stylesheet" href="../home-assets/style.css">
+    <!-- CSS khusus forum updates -->
+    <link rel="stylesheet" href="update.css">
+</head>
+<body>
+
+    <!-- Navbar mengikuti susunan index.html awal -->
+    <nav>
+        <div class="nav-logo">DELTARIA SMP</div>
+        <ul class="nav-links">
+            <li><a href="../shop/index.html">🛒 SHOP</a></li>
+            <li><a href="../live/index.html">⭕ ON LIVE</a></li>
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="index.html">Updates</a></li>
+            <li><a href="../index.html#fitur">Fitur</a></li>
+            <li><a href="../support/index.html">Support</a></li>     
+        </ul>
+    </nav>
+
+    <!-- Forum Header Section -->
+<section class="forum-header">
+    <div class="search-bar-container">
+        <input type="text" placeholder="Search or create a post..." id="forumSearch">
+    </div>
+    <!-- Tombol toggle sekarang menyatu di dalam filter-tags agar sejajar rapi -->
+    <div class="filter-tags">
+        <button class="view-toggle-btn" id="viewToggleBtn" title="Ubah Tampilan Layout">
+            <span class="icon-grid">⊞</span>
+        </button>
+        <span class="tag-btn active">All</span>
+        <span class="tag-btn configuring">Configuring</span>
+        <span class="tag-btn error">Help/Errors</span>
+        <span class="tag-btn suggestion">Suggestion</span>
+        <span class="tag-btn resource">Resource</span>
+    </div>
+</section>
+
+    <!-- Forum Grid System (Bungkus Utama) -->
+    <section class="forum-main-container">
+        <!-- Secara default kelasnya adalah forum-grid (Grid View) -->
+        <div class="forum-grid" id="updatesGrid">
+            <div class="loading-text">Memuat perkembangan update server...</div>
+        </div>
+    </section>
+
+    <!-- Modal Pop-Up Tengah Layar -->
+    <div class="modal-overlay" id="updateModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Deltaria SMP Community. Website dibangun secara native melalui repositori organisasi.</p>
+        <p style="margin-top: 5px; font-size: 11px; color: #334155;">Tidak berafiliasi dengan Mojang Synergies AB.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCMf7bOqWJ-FKUSdhXVoiC__EK4fBTtWpQ",
+            authDomain: "deltaria-smp-web.firebaseapp.com",
+            projectId: "deltaria-smp-web",
+            storageBucket: "deltaria-smp-web.firebasestorage.app",
+            messagingSenderId: "1096498644593",
+            appId: "1:1096498644593:web:3d54546f6a0a3ceb143dd0",
+            measurementId: "G-98Z1HBTMF1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const updatesGrid = document.getElementById('updatesGrid');
+        const updateModal = document.getElementById('updateModal');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const tagButtons = document.querySelectorAll('.tag-btn');
+        const viewToggleBtn = document.getElementById('viewToggleBtn');
+
+        let allUpdates = []; 
+
+        // 1. FUNGSI UTAMA RENDERING CARD
+        function renderUpdates(updatesList) {
+            updatesGrid.innerHTML = ""; 
+
+            if (updatesList.length === 0) {
+                updatesGrid.innerHTML = "<div class='loading-text'>Tidak ada postingan untuk kategori ini.</div>";
+                return;
+            }
+
+            updatesList.forEach((data) => {
+                const title = data.title || "Update Patch";
+                const author = data.author || "[Dev]";
+                const desc = data.desc || "";
+                const tag = data.tag || "new update";
+                const comments = data.commentCounts || "0";
+                const thumbnail = data.thumbnail || "";
+                
+                let dateDisplay = "Baru saja";
+                if (data.dataRelative) {
+                    if (typeof data.dataRelative.toDate === 'function') {
+                        const dateObj = data.dataRelative.toDate();
+                        dateDisplay = dateObj.toLocaleDateString('id-ID', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    } else {
+                        dateDisplay = data.dataRelative;
+                    }
+                }
+                
+                const card = document.createElement('div');
+                card.className = 'forum-card';
+
+                let imgHTML = "";
+                if (thumbnail.trim() !== "") {
+                    imgHTML = `<div class="card-media"><img src="${thumbnail}" alt="Update Image"></div>`;
+                }
+
+                const shortDesc = desc.length > 120 ? desc.substring(0, 120) + "..." : desc;
+
+                card.innerHTML = `
+                    <div class="card-meta">
+                        <span class="author-name">${author}</span>
+                        <span class="post-date">${dateDisplay}</span>
+                    </div>
+                    <div class="card-content-area">
+                        <h3 class="card-title">${title}</h3>
+                        <div class="card-desc">${shortDesc}</div>
+                    </div>
+                    ${imgHTML}
+                    <div class="card-footer">
+                        <div class="footer-left">
+                            <span class="bottom-tag ${tag.toLowerCase().replace(/\s+/g, '-')}">📄 ${tag}</span>
+                        </div>
+                        <span class="comment-icon">💬 ${comments}</span>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    let modalImgHTML = "";
+                    if (thumbnail.trim() !== "") {
+                        modalImgHTML = `<div class="modal-media"><img src="${thumbnail}" alt="Update Image"></div>`;
+                    }
+
+                    modalBody.innerHTML = `
+                        <div class="card-meta">
+                            <span class="author-name">${author}</span>
+                            <span class="post-date">Posted ${dateDisplay}</span>
+                        </div>
+                        <h2 class="modal-title">${title}</h2>
+                        <hr class="modal-divider">
+                        <div class="modal-desc">${desc}</div>
+                        ${modalImgHTML}
+                        <div class="modal-footer-info">
+                            <span class="bottom-tag ${tag.toLowerCase().replace(/\s+/g, '-')}">📄 ${tag}</span>
+                        </div>
+                    `;
+                    
+                    updateModal.classList.add('open');
+                    document.body.style.overflow = 'hidden'; 
+                });
+
+                updatesGrid.appendChild(card);
+            });
+        }
+
+        // 2. AMBIL DATA DARI FIREBASE
+        async function getUpdates() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "updates"));
+                allUpdates = [];
+                querySnapshot.forEach((doc) => {
+                    allUpdates.push(doc.data());
+                });
+                renderUpdates(allUpdates); 
+            } catch (error) {
+                console.error("Error fetching updates: ", error);
+                updatesGrid.innerHTML = "<div class='error-text'>Gagal memuat data dari database server.</div>";
+            }
+        }
+
+        // TOGGLE LOGIKA EVENT (SWITCH ANTARA GRID DAN LIST)
+        viewToggleBtn.addEventListener('click', () => {
+            updatesGrid.classList.toggle('list-mode');
+            
+            // Mengubah emoji tombol sebagai penanda visual
+            if(updatesGrid.classList.contains('list-mode')) {
+                viewToggleBtn.innerHTML = '<span class="icon-grid">☰</span>'; // Tanda List aktif
+                viewToggleBtn.classList.add('active-view');
+            } else {
+                viewToggleBtn.innerHTML = '<span class="icon-grid">⊞</span>'; // Tanda Grid aktif
+                viewToggleBtn.classList.remove('active-view');
+            }
+        });
+
+        // 3. LOGIKA FILTERING TAGS
+        tagButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tagButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selectedTag = button.textContent.trim().toLowerCase();
+
+                if (selectedTag === 'all') {
+                    renderUpdates(allUpdates);
+                } else {
+                    const filtered = allUpdates.filter(update => {
+                        const itemTag = (update.tag || "").toLowerCase();
+                        if (selectedTag === 'help/errors') {
+                            return itemTag.includes('error') || itemTag.includes('help');
+                        }
+                        return itemTag === selectedTag;
+                    });
+                    renderUpdates(filtered);
+                }
+            });
+        });
+
+        function closeModal() {
+            updateModal.classList.remove('open');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        updateModal.addEventListener('click', (e) => {
+            if (e.target === updateModal) closeModal();
+        });
+
+        getUpdates();
+    </script>
+</body>
+</html>

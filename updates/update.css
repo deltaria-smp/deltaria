@@ -1,0 +1,281 @@
+/* Container pembungkus halaman updates */
+.forum-header {
+    max-width: 1200px;
+    margin: 40px auto 10px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #111217;
+    border: 1px solid #222530;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.filter-tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.tag-btn {
+    padding: 6px 14px;
+    background-color: #16171e;
+    border: 1px solid #222530;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.tag-btn.active {
+    background-color: #2d313f;
+    color: #fff;
+}
+
+/* Area Grid System utama */
+.forum-main-container {
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.forum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+/* Kotak Card Forum */
+.forum-card {
+    background-color: #16171e !important;
+    border: 1px solid #222530 !important;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.forum-card:hover {
+    transform: translateY(-3px);
+    border-color: #3b4252 !important;
+}
+
+.card-meta {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.author-name {
+    color: #f43f5e;
+    font-weight: 600;
+}
+
+.card-title {
+    margin: 0 0 10px 0 !important;
+    font-size: 18px !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: left !important;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    white-space: pre-line;
+    text-align: left;
+}
+
+/* Gambar di halaman depan */
+.card-media {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    font-size: 13px;
+    color: #64748b;
+    border-top: 1px solid #222530;
+    padding-top: 12px;
+}
+
+.bottom-tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+/* Warna Tag Dinamis */
+.bottom-tag.new-update { background-color: #2c1a20; color: #f43f5e; }
+.bottom-tag.configuring { background-color: #132433; color: #38bdf8; }
+
+/* Modal Pop-up di Tengah Layar */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 99999;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-overlay.open {
+    opacity: 1; pointer-events: auto;
+}
+
+.modal-content {
+    background-color: #16171e;
+    border: 1px solid #222530;
+    width: 100%; max-width: 680px; max-height: 80vh;
+    border-radius: 14px; padding: 25px;
+    position: relative; overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+}
+
+.modal-close-btn {
+    position: absolute; top: 15px; right: 20px;
+    background: none; border: none; color: #64748b;
+    font-size: 28px; cursor: pointer;
+}
+
+.modal-title {
+    color: #fff; font-size: 22px; margin: 10px 0; line-height: 1.4;
+}
+
+.modal-divider { border: 0; height: 1px; background: #222530; margin: 15px 0; }
+
+.modal-desc {
+    font-size: 15px; color: #cbd5e1; line-height: 1.7;
+    white-space: pre-line; margin-bottom: 20px;
+}
+
+.modal-media { width: 100%; max-height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 15px; }
+.modal-media img { width: 100%; height: 100%; object-fit: contain; }
+
+.loading-text, .error-text { grid-column: 1 / -1; text-align: center; color: #64748b; padding: 40px; }
+
+/* --- CSS BARU UNTUK FITUR TOGGLE VIEW MANAGER --- */
+.filter-row {
+    display: flex;
+    align-items: center; /* Menyejajarkan semua item vertikal di tengah */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.view-toggle-btn {
+    padding: 0;
+    width: 32px;  /* Disamakan 32px biar jadi lingkaran sempurna */
+    height: 32px; 
+    background-color: #16171e;
+    border: 1px solid #222530;
+    border-radius: 50%; /* Diubah ke 50% supaya bulat penuh seperti tombol melingkar */
+    color: #94a3b8;
+    cursor: pointer;
+    
+    /* Pengunci Tengah Super Akurat */
+    display: grid;
+    place-items: center;
+    
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.view-toggle-btn:hover, .view-toggle-btn.active-view {
+    background-color: #2d313f;
+    border-color: #f43f5e;
+    color: #ffffff !important;
+}
+
+/* Sempurnakan posisi font/emoji di dalam */
+.view-toggle-btn .icon-grid {
+    font-size: 20px; 
+    font-weight: bold; /* Membuat font/emoji menjadi tebal */
+    color: #ffffff;    /* Set default font warna putih */
+    display: block;
+    line-height: 1;
+    margin-top: -6px; 
+}
+
+/* KETIKA LIST MODE AKTIF (MERUBAH GRID MENJADI BARIS VERTIKAL DETAIL) */
+.forum-grid.list-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.forum-grid.list-mode .forum-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.forum-grid.list-mode .card-meta {
+    margin-bottom: 0;
+    min-width: 180px;
+}
+
+.forum-grid.list-mode .card-content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.forum-grid.list-mode .card-title {
+    font-size: 15px !important;
+    margin: 0 !important;
+}
+
+/* Sembunyikan deskripsi dan gambar mini di mode List agar ramping ala File Manager */
+.forum-grid.list-mode .card-desc,
+.forum-grid.list-mode .card-media {
+    display: none !important;
+}
+
+.forum-grid.list-mode .card-footer {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+    gap: 15px;
+}
