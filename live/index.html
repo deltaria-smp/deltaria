@@ -52,6 +52,7 @@
         const db = getFirestore(app);
         const streamerListContainer = document.getElementById('streamer-list');
 
+        // --- FIXED: Pemanggilan fungsi onSnapshot sudah dibersihkan dari duplikasi ---
         onSnapshot(collection(db, "streamers"), (snapshot) => {
             streamerListContainer.innerHTML = "";
 
@@ -63,39 +64,46 @@
             snapshot.forEach((doc) => {
                 const data = doc.data();
                 
-                // Tema kartu menyesuaikan status live (Glow Hijau Bedrock jika live, Glow Merah Java jika offline)
+                // Tema kartu menyesuaikan status live
                 const themeClass = data.isLive ? "live-online-card" : "live-offline-card";
                 const badgeText = data.isLive ? "LIVE" : "OFFLINE";
                 const badgeStyle = data.isLive ? "live-badge-green" : "live-badge-red";
 
-                // Menyatukan komponen ornamen Window Style dengan komponen Grid Card Fitur
-                const cardHTML = `
-                    <div class="card ${themeClass}">
-                        <span class="live-indicator-badge ${badgeStyle}">${badgeText}</span>
-                        <div class="live-avatar-circle">${data.avatar || '🎮'}</div>
-                        <h3>${data.name}</h3>
-                        <p class="tiktok-tag">${data.tiktok}</p>
-                        
-                        <div class="segment-window" style="margin-top: 20px; min-height: 90px;">
-                            <div class="window-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                                <span class="window-title">stream_status.log</span>
-                            </div>
-                            <div class="window-content" style="padding: 12px 15px;">
-                                <div class="placeholder-text" style="font-size: 11px;">"${data.desc}"</div>
-                                <div class="sub-placeholder" style="font-size: 10px; margin-top: 5px;">Topic: ${data.thumbnail}</div>
-                            </div>
-                        </div>
+                // KUNCI DETEKSI AVATAR (Emoji vs URL)
+                let avatarContent = '🎮'; 
+                if (data.avatar) {
+                    if (data.avatar.startsWith('http://') || data.avatar.startsWith('https://')) {
+                        avatarContent = `<img src="${data.avatar}" alt="${data.name}" class="custom-icon-img" style="border-radius: 50%;">`;
+                    } else {
+                        avatarContent = data.avatar;
+                    }
+                }
 
-                        <a href="https://tiktok.com/${data.tiktok}" target="_blank" class="btn-action-live">Tonton Streaming</a>
-                    </div>
-                `;
+                // Menyatukan komponen ornamen Window Style dengan komponen Grid Card Fitur
+                // Menyatukan komponen deskripsi minimalis dengan komponen Grid Card Fitur
+const cardHTML = `
+    <div class="card ${themeClass}">
+        <span class="live-indicator-badge ${badgeStyle}">${badgeText}</span>
+        <div class="live-avatar-circle">${avatarContent}</div>
+        <h3>${data.name}</h3>
+        <p class="tiktok-tag">${data.tiktok}</p>
+        
+        <!-- STATUS STREAM MINIMALIS & ELEGAN -->
+        <div class="live-status-console">
+            <div class="status-message">"${data.desc}"</div>
+            <div class="status-meta">
+                <span class="meta-label">TOPIC:</span> 
+                <span class="meta-value">${data.thumbnail}</span>
+            </div>
+        </div>
+
+        <a href="https://tiktok.com/${data.tiktok}" target="_blank" class="btn-action-live">Tonton Streaming</a>
+    </div>
+`;
                 
                 streamerListContainer.innerHTML += cardHTML;
-            });
-        });
+            }); 
+        }); 
     </script>
 </body>
 </html>

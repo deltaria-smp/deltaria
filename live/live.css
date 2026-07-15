@@ -2,38 +2,60 @@
    MODIFIKASI KHUSUS HALAMAN LIVE (UKURAN FIXED & GAGAH)
    ========================================================================== */
 
+/* KUNCI UTAMA: Menetralisir flex slider global agar kembali menjadi CSS Grid murni */
+#streamer-list {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 360px)) !important;
+    gap: 35px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    transform: none !important; /* Mencegah bug geser script slider */
+}
+
 /* Mengunci ukuran kartu di dalam grid agar seragam */
 #streamer-list .card {
     position: relative;
     width: 100%;
     max-width: 360px;    /* Lebar maksimal kotak ditentukan */
     min-height: 480px;   /* Tinggi minimal kotak dikunci gede & tinggi */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important; /* Konten disusun vertikal ke bawah */
+    align-items: center !important;     /* Konten rata tengah secara horizontal */
+    justify-content: flex-start !important;
     padding: 35px 25px;
-    background-color: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+    border: 2px solid #15224f;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
     margin: 0 auto;      /* Memastikan kartu rapi di tengah */
+    flex: none !important; /* Mematikan flex-grow bawaan slider main page */
 }
 
 /* Lingkaran Avatar Streamer */
 .live-avatar-circle {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background: #05070f;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
-    margin-top: 15px;
+    font-size: 2.8rem;
+    margin-top: 25px;
     margin-bottom: 15px;
     border: 2px solid #162244;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Reset teks agar nama & tag TikTok tidak bertubrukan */
+#streamer-list .card h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
 }
 
 /* Username TikTok */
@@ -42,8 +64,9 @@
     font-family: 'Consolas', monospace;
     font-weight: bold;
     font-size: 14px !important;
-    margin-top: -5px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
 }
 
 /* Penanda Badge Status Pojok Kanan Atas Kartu */
@@ -56,6 +79,7 @@
     padding: 4px 12px;
     border-radius: 6px;
     letter-spacing: 0.5px;
+    z-index: 5;
 }
 .live-badge-green {
     background: rgba(0, 255, 155, 0.1);
@@ -81,14 +105,62 @@
     transform: translateY(-5px);
 }
 
-/* Pengunci Ukuran Kotak Terminal Window Status Log */
-#streamer-list .segment-window {
+/* ==========================================================================
+   KONSOL STATUS MINIMALIS & ELEGAN
+   ========================================================================== */
+
+.live-status-console {
     width: 100%;
-    min-height: 110px;   /* Tinggi kotak teks log dikunci */
-    max-height: 110px;
-    margin-top: auto;    /* Menolak tarikan otomatis dari teks atas */
-    margin-bottom: 20px;
-    overflow: hidden;    /* Mencegah teks meluber jika kepanjangan */
+    min-height: 100px;
+    max-height: 120px;
+    margin-top: auto !important;
+    margin-bottom: 25px !important;
+    padding: 16px 20px;
+    background: rgba(5, 7, 15, 0.6); /* Transparan gelap premium */
+    border-left: 3px solid var(--accent-blue); /* Aksen garis vertikal tajam */
+    border-radius: 4px 12px 12px 4px;
+    font-family: 'Consolas', monospace;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Pesan Deskripsi Utama */
+.status-message {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #e2e8f0;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Batasi maksimal 2 baris agar tetap rapi */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Bagian Meta/Topik Bawah */
+.status-meta {
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta-label {
+    color: #4e6199;
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.meta-value {
+    color: var(--accent-blue);
+    font-weight: 600;
 }
 
 /* Tombol Tonton */
@@ -105,6 +177,7 @@
     transition: all 0.2s;
     background: var(--accent-blue);
     color: #060814;
+    margin-top: auto; /* Mendorong tombol selalu berada di dasar kartu */
 }
 .btn-action-live:hover { 
     filter: brightness(1.15);

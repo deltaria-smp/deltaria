@@ -92,7 +92,7 @@ nav {
     position: relative;
     background: 
         radial-gradient(circle at 50% 20%, rgba(0, 210, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 20% 50%, rgba(ff, 2a, 5f, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 20% 50%, rgba(255, 42, 95, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 80% 50%, rgba(0, 255, 9b, 0.05) 0%, transparent 40%);
 }
 .hero h1 {
@@ -243,11 +243,12 @@ nav {
     text-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
+/* Modifikasi struktur bawaan agar aman bertindak sebagai Flex-Track Slider */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
 }
 
 .card {
@@ -322,7 +323,6 @@ footer p {
    6. SEKSI ARSITUR HALAMAN KHUSUS SUPPORT (support.html)
    ========================================================================== */
 .support-page-bg {
-    /* Menggunakan warna dasar hitam pekat dengan sedikit bias cyan tipis di bagian atas */
     background: radial-gradient(circle at 50% 75%, rgba(0, 210, 255, 0.04) 0%, #030408 50%) !important;
 }
 
@@ -539,7 +539,6 @@ footer p {
     .nav-links { display: none; }
     .container { margin: 80px auto; padding: 0 25px; }
     .section-title { font-size: 2.2rem; margin-bottom: 40px; }
-    .card { padding: 35px 25px; }
 }
 
 @media (max-width: 480px) {
@@ -561,4 +560,103 @@ footer p {
     object-fit: contain;  /* Menjaga gambar tidak gepeng atau terdistorsi */
     vertical-align: middle;
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Mempertahankan efek glow */
+}
+
+/* ==========================================================================
+   X. PREMIUM SLIDER SYSTEM SPECIFIC FUNCTION (PERBAIKAN KALKULASI RASIO DAN GAP)
+   ========================================================================== */
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden; /* Menyembunyikan panel lain di luar viewport */
+    border-radius: 28px;
+    padding: 15px 5px;
+}
+
+/* PERBAIKAN UTAMA: Kalibrasi track slider sejauh 3 halaman (300%) */
+.container .grid {
+    display: flex !important;
+    flex-direction: row !important;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); 
+    width: 300% !important; 
+    margin: 0;
+    padding: 0;
+}
+
+/* PERBAIKAN UTAMA: Tiap card ditarik sebesar 1/9 dari total panjang track .grid (300%)
+   Menggunakan padding transparan + background-clip agar pembagian persentase mutlak tidak patah ke bawah */
+.container .card {
+    flex: 0 0 calc(100% / 9) !important; 
+    flex-shrink: 0 !important;
+    box-sizing: border-box;
+    border: 12px solid transparent; 
+    background-clip: padding-box; 
+    display: block;
+}
+
+/* Styling Tombol Panah Kanan Kiri */
+.slide-btn {
+    background: rgba(11, 17, 38, 0.9);
+    border: 2px solid #15224f;
+    color: var(--accent-blue);
+    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.slide-btn:hover {
+    background: var(--accent-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+.prev-btn { left: -25px; }
+.next-btn { right: -25px; }
+
+/* Dot Indikator Bagian Bawah */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+.slider-dots .dot {
+    width: 10px;
+    height: 10px;
+    background: #1e293b;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.slider-dots .dot.active {
+    background: var(--accent-blue);
+    width: 25px; /* Efek memanjang untuk dot aktif */
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* RESPONSIVE CONTROL: Layar Kecil / HP (Menjadi 1 slide per baris) */
+@media (max-width: 1024px) {
+    .container .grid {
+        width: 900% !important; /* 9 Panel tunggal bergulir satu per satu */
+    }
+    .container .card {
+        flex: 0 0 calc(100% / 9) !important;
+        border: 8px solid transparent;
+    }
+    .prev-btn { left: 5px; }
+    .next-btn { right: 5px; }
 }

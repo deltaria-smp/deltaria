@@ -1,0 +1,291 @@
+/* ==========================================================================
+   1. CORE STYLE & VARIABLES
+   ========================================================================= */
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg-dark: #060814;
+    --bg-surface: #0b1126;
+    --bg-card: #121b3a;
+    
+    /* Warna Aksen */
+    --accent-blue: #00d2ff;
+    --accent-gold: #ffd700;
+    --accent-pink: #ff2a5f;
+    --accent-green: #00f59b;
+    
+    --text-main: #ffffff;
+    --text-muted: #8fa0dd;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. NAVBAR (SINKRONISASI GLOBAL WEB)
+   ========================================================================= */
+nav {
+    background-color: rgba(6, 8, 20, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #142046;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 10%;
+}
+
+.nav-logo {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+}
+
+.nav-links { display: flex; gap: 35px; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; font-size: 15px; text-transform: uppercase; }
+.active-link { color: var(--accent-blue) !important; border-bottom: 2px solid var(--accent-blue); padding-bottom: 4px; }
+
+/* ==========================================================================
+   3. LAYOUT MAIN STRUCT
+   ========================================================================= */
+.container {
+    max-width: 1200px;
+    margin: 150px auto 80px auto;
+    padding: 0 40px;
+}
+
+.back-to-shop {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.back-to-shop a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: opacity 0.2s;
+}
+
+.back-to-shop a:hover { opacity: 0.8; }
+
+.shop-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ffffff 30%, #a5ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.shop-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.section-divider {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 40px 0 25px 0;
+    color: #ff3e6c;
+    text-shadow: 0 0 10px rgba(255, 62, 108, 0.3);
+}
+
+.normal-title {
+    color: var(--accent-blue);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+/* --- GRID LAYOUT --- */
+.pass-grid {
+    display: grid;
+    gap: 30px;
+    width: 100%;
+}
+
+.promo-section { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.normal-section { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+
+/* ==========================================================================
+   4. CARD DESIGN
+   ========================================================================= */
+.pass-card {
+    background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+    border: 2px solid #15224f;
+    border-radius: 24px;
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.pass-card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- BADGE DISKON --- */
+.discount-badge {
+    position: absolute;
+    top: -15px;
+    right: 25px;
+    background: linear-gradient(135deg, #ff2a5f, #ff7e40);
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 6px 14px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(255, 42, 95, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* --- THEME GLOW UNTUK CARD PROMO --- */
+.starter-theme { border-color: rgba(0, 210, 255, 0.2); }
+.starter-theme:hover { border-color: var(--accent-blue); box-shadow: 0 15px 35px rgba(0, 210, 255, 0.15); }
+
+.intermediate-theme { border-color: rgba(255, 42, 95, 0.2); }
+.intermediate-theme:hover { border-color: var(--accent-pink); box-shadow: 0 15px 35px rgba(255, 42, 95, 0.15); }
+
+.sultan-theme { border-color: rgba(255, 215, 0, 0.2); }
+.sultan-theme:hover { border-color: var(--accent-gold); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2); }
+
+.special-normal { border-color: rgba(0, 245, 155, 0.2); }
+.special-normal:hover { border-color: var(--accent-green); box-shadow: 0 15px 35px rgba(0, 245, 155, 0.15); }
+
+/* --- HEADER CARD INLINE --- */
+.pass-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.pass-icon { font-size: 2.2rem; }
+
+.pass-title-inline { display: flex; align-items: center; }
+.pass-name { font-size: 22px; font-weight: 800; color: #ffffff; }
+
+/* --- HARGA --- */
+.price-tag {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.old-price {
+    font-size: 14px;
+    color: #475569;
+    text-decoration: line-through;
+    font-weight: 600;
+}
+
+.current-price {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.starter-theme .current-price { color: var(--accent-blue); }
+.intermediate-theme .current-price { color: var(--accent-pink); }
+.sultan-theme .current-price { color: var(--accent-gold); }
+
+/* --- INCLUDE LIST --- */
+.items-included {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 35px;
+    flex-grow: 1;
+}
+
+.items-included li {
+    font-size: 14px;
+    color: #cbd5e1;
+    position: relative;
+    padding-left: 22px;
+}
+
+.items-included li::before {
+    content: "⚡";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    font-size: 11px;
+}
+
+.bonus-perk::before {
+    content: "✨" !important;
+}
+
+.bonus-perk {
+    color: var(--accent-green) !important;
+    font-weight: 600;
+}
+
+.item-highlight {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* --- BUTTON BELI --- */
+.buy-btn {
+    width: 100%;
+    background: #ffffff;
+    color: #060814;
+    border: none;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.buy-btn:hover { background-color: #e2e8f0; }
+.buy-btn:active { transform: scale(0.98); }
+
+.starter-theme .buy-btn { background: var(--accent-blue); color: #000; }
+.starter-theme .buy-btn:hover { background: #5ce6ff; }
+
+.intermediate-theme .buy-btn { background: var(--accent-pink); color: #fff; }
+.intermediate-theme .buy-btn:hover { background: #ff5c84; }
+
+.sultan-theme .buy-btn { background: var(--accent-gold); color: #000; }
+.sultan-theme .buy-btn:hover { background: #ffe44d; }
+
+.normal-btn {
+    background: transparent;
+    border: 2px solid #1d2d5f;
+    color: #ffffff;
+}
+.normal-btn:hover {
+    background: #1d2d5f;
+}
+
+/* ==========================================================================
+   5. RESPONSIVE
+   ========================================================================= */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .container { margin-top: 120px; padding: 0 25px; }
+    .shop-title { font-size: 2.3rem; }
+    .promo-section, .normal-section { grid-template-columns: 1fr; }
+}

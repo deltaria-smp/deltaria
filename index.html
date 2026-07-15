@@ -10,16 +10,17 @@
 <body>
 
     <nav>
-    <div class="nav-logo">DELTARIA SMP</div>
-    <ul class="nav-links">
-        <li><a href="live/index.html">⭕ ON LIVE</a></li>
-        <li><a href="index.html#home">Home</a></li>
-        <!-- Diubah dari updates/ menjadi updates/index.html -->
-        <li><a href="updates/index.html">Updates</a></li>
-        <li><a href="index.html#fitur">Fitur</a></li>
-        <li><a href="support/index.html">Support</a></li>     
-    </ul>
-</nav>
+        <div class="nav-logo">DELTARIA SMP</div>
+        <ul class="nav-links">
+            <li><a href="shop/index.html">🛒 SHOP</a></li>
+            <li><a href="live/index.html">⭕ ON LIVE</a></li>
+            <li><a href="index.html#home">Home</a></li>
+            <!-- Diubah dari updates/ menjadi updates/index.html -->
+            <li><a href="updates/index.html">Updates</a></li>
+            <li><a href="index.html#fitur">Fitur</a></li>
+            <li><a href="support/index.html">Support</a></li>     
+        </ul>
+    </nav>
 
     <section class="hero" id="home">
         <h1>Satu Komunitas, Tanpa Batas</h1>
@@ -54,26 +55,84 @@
 
     <section class="container" id="fitur">
         <h2 class="section-title">Kenapa Harus Bermain di Deltaria?</h2>
-        <div class="grid">
+        
+        <div class="slider-wrapper">
+            <!-- Tombol Navigasi Kiri -->
+            <button class="slide-btn prev-btn" id="prevSlide">◀</button>
             
-            <div class="card">
-                <span class="icon">📱</span>
-                <h3>Dukungan Cross-Play</h3>
-                <p>Didukung oleh jembatan Geyser & Floodgate. Pemain dari Minecraft Java Edition (PC) and Bedrock Edition (Android, iOS, Konsol) bisa berpetualang bersama di satu dunia yang sama tanpa hambatan.</p>
-            </div>
+            <!-- Viewport Slider Container -->
+            <div class="slider-container">
+                <div class="grid" id="sliderGrid">
+                    
+                    <!-- SLIDE 1 (BATCH 1 - 3 PANEL AWAL) -->
+                    <div class="card">
+                        <span class="icon">📱</span>
+                        <h3>Dukungan Cross-Play</h3>
+                        <p>Didukung oleh jembatan Geyser & Floodgate. Pemain dari Minecraft Java Edition (PC) and Bedrock Edition (Android, iOS, Konsol) bisa berpetualang bersama di satu dunia yang sama tanpa hambatan.</p>
+                    </div>
 
-            <div class="card">
-                <span class="icon">⚔️</span>
-                <h3>Sistem RPG (AuraSkills)</h3>
-                <p>Tingkatkan statistik karaktermu secara alami melalui grinding! Naikkan level Strength, Crit Damage, Kebal (Toughness), hingga Kecepatan Lari untuk mendominasi pertempuran pahlawan.</p>
-            </div>
+                    <div class="card">
+                        <span class="icon">⚔️</span>
+                        <h3>Sistem RPG (AuraSkills)</h3>
+                        <p>Tingkatkan statistik karaktermu secara alami melalui grinding! Naikkan level Strength, Crit Damage, Kebal (Toughness), hingga Kecepatan Lari untuk mendominasi pertempuran pahlawan.</p>
+                    </div>
 
-            <div class="card">
-                <span class="icon">🪙</span>
-                <h3>Ekonomi Mandiri (Bond of Trust)</h3>
-                <p>Bangun toko, kelola perizinan klaim wilayah, dan lakukan perdagangan antar pemain secara aman menggunakan protokol hak akses area perlindungan yang ketat dan bebas dari griefing.</p>
-            </div>
+                    <div class="card">
+                        <span class="icon">🪙</span>
+                        <h3>Ekonomi Mandiri (Bond of Trust)</h3>
+                        <p>Bangun toko, kelola perizinan klaim wilayah, dan lakukan perdagangan antar pemain secara aman menggunakan protokol hak akses area perlindungan yang ketat dan bebas dari griefing.</p>
+                    </div>
 
+                    <!-- SLIDE 2 (BATCH 2 - 3 PANEL TAMBAHAN KELOMPOK A) -->
+                    <div class="card">
+                        <span class="icon">👑</span>
+                        <h3>Rank Sistem Adil</h3>
+                        <p>Nikmati keseimbangan gameplay dengan informasi transparan mengenai ketersediaan Fitur Rank Gratis yang bisa dicapai via grinding serta tier Rank Donatur pendukung server.</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="icon">⏳</span>
+                        <h3>Reset Season Berkala</h3>
+                        <p>Kompetisi dan petualangan yang selalu segar! Pembaruan ekonomi, tantangan berkala, serta pembersihan berkala melalui sistem Reset Season untuk menjaga hype kompetisi.</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="icon">🛡️</span>
+                        <h3>Murni Non P2W</h3>
+                        <p>Semua item, perlengkapan kustom, dan resource krusial di dalam server dijamin Non-P2W! Seluruh tipe player memiliki kesempatan setara untuk mendapatkannya langsung.</p>
+                    </div>
+
+                    <!-- SLIDE 3 (BATCH 3 - 3 PANEL TAMBAHAN KELOMPOK B) -->
+                    <div class="card">
+                        <span class="icon">🌾</span>
+                        <h3>Easy Farm & Economy</h3>
+                        <p>Sistem ramah pemain! Sangä mudah untuk membangun ladang otomatis (farm) dan mekanisme mudah untuk mendapatkan uang demi kemakmuran klaim wilayahmu.</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="icon">💬</span>
+                        <h3>Dukungan Komunitas 24/7</h3>
+                        <p>Butuh bantuan atau teman mengobrol? Dukungan penuh komunitas hadir non-stop 24/7 langsung melalui Group WhatsApp resmi Deltaria SMP.</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="icon">🔒</span>
+                        <h3>Security Tingkat Menengah</h3>
+                        <p>Keamanan server terjaga ketat dengan aturan tegas terhadap segala jenis Cheat, Bug Exploiting, serta dilengkapi dengan sistem proteksi Anti Bot Server.</p>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Tombol Navigasi Kanan -->
+            <button class="slide-btn next-btn" id="nextSlide">▶</button>
+        </div>
+
+        <!-- Dot Indikator Slide Bawah -->
+        <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
         </div>
     </section>
 
@@ -90,7 +149,6 @@
         }
 
         function copyBedrockIp() {
-            // Karena IP Bedrock dipisah dengan port, kita ambil IP murninya saja
             const ipText = document.getElementById('bedrockIp').childNodes[0].textContent.trim();
             const btn = document.getElementById('bedrockBtn');
             executeCopy(ipText, btn);
@@ -111,6 +169,71 @@
                 console.error('Gagal menyalin text: ', err);
             });
         }
+
+        // --- FIX LOGIKA TRANSLATION SLIDER (3, 3, 3) ---
+        const grid = document.getElementById('sliderGrid');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        const dots = document.querySelectorAll('.slider-dots .dot');
+        
+        let currentSlide = 0;
+        const totalSlides = 3; 
+        const slideIntervalTime = 5000; 
+        let slideInterval;
+
+        function updateSlider() {
+            // KUNCI PERBAIKAN: Karena lebar track grid adalah 300%, untuk bergeser 1 halaman penuh 
+            // kita harus membagi 100% dengan totalSlides (3), sehingga pergeserannya adalah 33.333% per langkah.
+            const offset = (currentSlide * 100) / totalSlides;
+            grid.style.transform = `translateX(-${offset}%)`;
+            
+            dots.forEach((dot, idx) => {
+                if(idx === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlideFunc() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlideFunc() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlideFunc, slideIntervalTime);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlideFunc();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlideFunc();
+            resetInterval();
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                currentSlide = parseInt(e.target.getAttribute('data-index'));
+                updateSlider();
+                resetInterval();
+            });
+        });
+
+        startAutoSlide();
     </script>
 </body>
 </html>

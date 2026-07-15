@@ -1,0 +1,271 @@
+/* ==========================================================================
+   1. RESET & CORE VARIABLES (TEMA EPIC CYBER-FANTASY MINECRAFT)
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-dark: #060814;
+    --bg-surface: #0b1126;
+    --bg-card: #121b3a;
+    --bg-card-hover: #19254e;
+    
+    /* Aksentuasi Warna Neon */
+    --accent-blue: #00d2ff;
+    --accent-java: #ff2a5f;
+    --accent-bedrock: #00f59b;
+    
+    /* Warna Teks */
+    --text-main: #ffffff;
+    --text-muted: #8fa0dd;
+    --border-glow: rgba(0, 210, 255, 0.2);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR (MATCHES HOME WEBSITE STYLESHEET)
+   ========================================================================== */
+nav {
+    background-color: rgba(6, 8, 20, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid #142046;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 10%;
+}
+
+.nav-logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6), 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-blue);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.8);
+}
+
+.active-link {
+    color: var(--accent-blue) !important;
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 4px;
+}
+
+/* ==========================================================================
+   3. CONTAINER & CONTENT MAIN CONTENT SHOP
+   ========================================================================== */
+.container {
+    max-width: 1250px;
+    margin: 160px auto 60px auto;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.shop-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ffffff 30%, #a5ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.shop-subtitle {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- GRID RANKS (RESPONSIVE GRID) --- */
+.ranks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+/* --- CARD STYLE --- */
+.rank-card {
+    background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+    border: 2px solid #15224f;
+    border-radius: 24px;
+    padding: 40px 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.rank-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--accent-blue);
+    box-shadow: 0 20px 45px rgba(0, 210, 255, 0.15);
+}
+
+/* --- WARNA SPECIAL UNTUK TIER PREMIUM (GOLDEN GLOW) --- */
+.rank-card.premium {
+    border-color: rgba(255, 215, 0, 0.2);
+}
+.rank-card.premium:hover {
+    border-color: #ffd700;
+    box-shadow: 0 20px 45px rgba(255, 215, 0, 0.15);
+}
+
+/* --- HEADER UNTUK STRUKTUR ICON & INLINE TEXT --- */
+.rank-header {
+    display: flex;
+    align-items: center;  /* Icon dan teks center lurus secara vertikal */
+    gap: 16px;            /* Jarak horizontal dari Icon ke Teks */
+    margin-bottom: 25px;
+    border-bottom: 2px solid #142046;
+    padding-bottom: 18px;
+}
+
+.rank-icon {
+    font-size: 2.2rem;    /* Ukuran besar placeholder emoji */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;      /* Menjaga area kotak icon tetap konsisten */
+}
+
+/* Layout horizontal memaksa Nama Rank & Tag bersebelahan */
+.rank-title-inline {
+    display: flex;
+    align-items: baseline; /* Menyeimbangkan baris bawah teks besar & kecil */
+    gap: 12px;             /* Jarak horizontal antara Nama Rank dengan Tag */
+    flex-wrap: wrap;       /* Proteksi responsif layar smartphone kecil */
+}
+
+.rank-name {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+.rank-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--accent-blue);
+    letter-spacing: 1.5px;
+    position: relative;
+    top: -2px;
+}
+
+/* Mengubah warna tag menjadi emas untuk rank premium */
+.rank-card.premium .rank-tag {
+    color: #ffd700;
+}
+
+/* Jika nanti diganti memakai file asset gambar PNG/WEBP custom */
+.rank-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+/* --- LIST PERKS --- */
+.perks-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.perks-list li {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    padding-left: 24px;
+    position: relative;
+}
+
+/* Custom Checkmark Icon */
+.perks-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-bedrock);
+    font-weight: bold;
+}
+
+/* Jika Perk tidak ada akses */
+.perks-list li.no-access {
+    color: #475569;
+    text-decoration: line-through;
+}
+.perks-list li.no-access::before {
+    content: "✕";
+    color: var(--accent-java);
+}
+
+.perk-highlight {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   4. MEDIA QUERIES RESPONSIVE GRAPHIC GADGET
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .shop-title { font-size: 2.8rem; }
+}
+
+@media (max-width: 768px) {
+    nav { padding: 15px 6%; }
+    .nav-links { display: none; } /* Sinkron dengan behavior website utama */
+    .container { margin-top: 120px; padding: 0 25px; }
+    .shop-title { font-size: 2.2rem; }
+}
