@@ -99,6 +99,9 @@ nav {
     text-align: center;
 }
 
+.back-to-shop { text-align: left; margin-bottom: 20px; }
+.back-to-shop a { color: var(--accent-blue); text-decoration: none; font-weight: 700; font-size: 14px; }
+
 .shop-title {
     font-size: 3.5rem;
     font-weight: 900;
@@ -148,8 +151,6 @@ nav {
     border-color: var(--accent-blue);
     box-shadow: 0 20px 45px rgba(0, 210, 255, 0.15);
 }
-
-.back-to-shop { text-align: left; margin-bottom: 20px; }
 
 /* --- WARNA SPECIAL UNTUK TIER PREMIUM (GOLDEN GLOW) --- */
 .rank-card.premium {
