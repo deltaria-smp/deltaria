@@ -1,0 +1,226 @@
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Theme Colors */
+    --sociabuzz-color: #10b981;
+    --paypal-color: #0070ba;
+    --wa-color: #25d366;
+}
+
+.support-page-bg {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.support-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.support-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.support-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.support-header p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Grid Layout */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Support Card Segment */
+.support-segment {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 35px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga tombol tetap di bawah secara sejajar */
+    min-height: 380px; /* Memberikan tinggi minimal yang konsisten */
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.support-segment:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Theme-specific borders on hover */
+.socialbuzz-theme:hover { border-color: var(--sociabuzz-color); }
+.paypal-theme:hover { border-color: var(--paypal-color); }
+.other-theme:hover { border-color: var(--wa-color); }
+
+/* Badges */
+.segment-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+}
+
+.socialbuzz-theme .segment-badge { background: rgba(16, 185, 129, 0.15); color: var(--sociabuzz-color); }
+.paypal-theme .segment-badge { background: rgba(0, 112, 186, 0.15); color: #38bdf8; }
+.other-theme .segment-badge { background: rgba(37, 211, 102, 0.15); color: var(--wa-color); }
+
+/* Platform Logo */
+.segment-logo-container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.segment-logo {
+    max-height: 100%;
+    max-width: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+}
+
+.support-segment h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.segment-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1; /* Mendorong tombol ke bawah jika teks deskripsi pendek */
+}
+
+/* Action Buttons */
+.btn-action {
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.socialbuzz-theme .btn-action {
+    background: var(--sociabuzz-color);
+    color: #fff;
+}
+.socialbuzz-theme .btn-action:hover {
+    background: #059669;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.paypal-theme .btn-action {
+    background: var(--paypal-color);
+    color: #fff;
+}
+.paypal-theme .btn-action:hover {
+    background: #005ea6;
+    box-shadow: 0 0 15px rgba(0, 112, 186, 0.4);
+}
+
+.other-theme .btn-action {
+    background: var(--wa-color);
+    color: #fff;
+}
+.other-theme .btn-action:hover {
+    background: #1ebd54;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Footer styling */
+footer {
+    margin-top: 80px;
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--border-color);
+    background: #0b1329;
+}
+footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   PERBAIKAN NAVBAR (DELTARIA SMP TERTUTUP)
+   ========================================== */
+
+/* Pastikan body support memiliki padding-top agar konten tidak tertutup navbar jika navbar-nya fixed/absolute */
+.support-page-bg {
+    padding-top: 80px; /* Sesuaikan tinggi navbar kamu */
+}
+
+/* Memastikan navbar utama terlihat jelas di latar belakang gelap */
+nav {
+    background-color: rgba(15, 23, 42, 0.95) !important; /* Latar gelap transparan */
+    backdrop-filter: blur(8px); /* Efek blur modern */
+    border-bottom: 1px solid var(--border-color) !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999 !important; /* Memastikan navbar berada di lapisan paling atas */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px !important;
+    box-sizing: border-box;
+}
+
+/* Memastikan tulisan logo DELTARIA SMP berwarna terang dan tidak tertutup */
+.nav-logo {
+    color: #f8fafc !important; /* Putih terang */
+    font-weight: 800 !important;
+    font-size: 1.4rem !important;
+    letter-spacing: 0.05em !important;
+    z-index: 10000 !important;
+}
+
+/* Memastikan link menu navigasi juga terlihat terang */
+.nav-links a {
+    color: #94a3b8 !important; /* Abu-abu terang */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active-link {
+    color: #38bdf8 !important; /* Warna biru muda menyala saat aktif/hover */
+}
