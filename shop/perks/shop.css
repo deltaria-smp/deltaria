@@ -149,6 +149,8 @@ nav {
     box-shadow: 0 20px 45px rgba(0, 210, 255, 0.15);
 }
 
+.back-to-shop { text-align: left; margin-bottom: 20px; }
+
 /* --- WARNA SPECIAL UNTUK TIER PREMIUM (GOLDEN GLOW) --- */
 .rank-card.premium {
     border-color: rgba(255, 215, 0, 0.2);
