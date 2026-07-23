@@ -519,10 +519,10 @@ footer p {
 }
 
 /* ==========================================================================
-   7. MEDIA QUERIES (FULL RESPONSIFITAS GADGET)
+   7. MEDIA QUERIES (FULL RESPONSIFITAS GADGET - FIXED)
    ========================================================================== */
 @media (max-width: 1024px) {
-    .hero h1 { font-size: 3.5rem; }
+    .hero h1 { font-size: 3.2rem; }
     .ip-flex-row {
         flex-direction: column;
         align-items: center;
@@ -535,22 +535,61 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    nav { padding: 15px 6%; }
-    .nav-links { display: none; }
-    .container { margin: 80px auto; padding: 0 25px; }
-    .section-title { font-size: 2.2rem; margin-bottom: 40px; }
+    nav { 
+        padding: 15px 5%; 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    /* Mengubah menu navigasi agar bisa di-scroll ke samping di HP */
+    .nav-links { 
+        display: flex !important; 
+        overflow-x: auto;
+        width: 100%;
+        gap: 18px;
+        padding-bottom: 6px;
+        white-space: nowrap;
+    }
+    
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .container { margin: 60px auto; padding: 0 15px; }
+    .section-title { font-size: 2rem; margin-bottom: 30px; }
+    
+    /* Memperbaiki tombol navigasi slider di HP */
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
 }
 
 @media (max-width: 480px) {
-    .hero h1 { font-size: 2.6rem; }
-    .hero p { font-size: 1.1rem; }
-    .ip-widget { padding: 18px; gap: 15px; }
+    .hero {
+        padding-top: 130px;
+    }
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1rem; }
+    
+    /* Memperbaiki Widget IP di HP */
+    .ip-widget { 
+        flex-direction: column;
+        text-align: center;
+        padding: 20px; 
+        gap: 12px; 
+    }
+    .ip-box {
+        text-align: center;
+    }
     .server-icon { font-size: 26px; }
-    .ip-address { font-size: 14px; }
+    .ip-address { font-size: 15px; }
     .port-label {
         display: inline-block;
         margin-left: 0;
         margin-top: 6px;
+    }
+    .btn-copy {
+        width: 100%;
     }
 }
 
